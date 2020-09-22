@@ -1,0 +1,122 @@
+.home {
+  padding-top: 25px;
+  display: flex;
+}
+.title {
+  margin-bottom: 20px;
+  @media (max-width: 1040px) {
+    padding: 0 20px;
+  }
+  @media (max-width: 400px) {
+    padding: 0 10px;
+  }
+  h5 {
+    font-weight: 700;
+    margin: 0;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+}
+.anime-container {
+  margin-bottom: 50px;
+}
+.anime-result {
+  display: grid;
+  grid-gap: 28px 30px;
+  grid-template-columns: repeat(auto-fill, 185px);
+  justify-content: space-between;
+  @media (max-width: 1540px) {
+    grid-gap: 25px 20px;
+  }
+  @media (max-width: 1065px) {
+    grid-gap: 25px 14px;
+  }
+  @media (max-width: 1040px) {
+    padding: 0 20px;
+    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+    grid-gap: 25px 20px;
+    justify-content: center;
+  }
+  @media (max-width: 760px) {
+    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+    grid-gap: 25px 20px;
+  }
+  @media (max-width: 400px) {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-gap: 20px 12px;
+    padding: 0 10px;
+  }
+}
+.media-card {
+  animation: card-animation 0.3s linear;
+  display: grid;
+  grid-template-rows: -webkit-min-content auto;
+  grid-template-rows: min-content auto;
+  position: relative;
+  width: 185px;
+  @media (max-width: 1040px) {
+    width: 100%;
+  }
+  .cover {
+    background: rgba(30, 42, 56, 0.8);
+    border-radius: 4px;
+    box-shadow: 0 14px 30px rgba(0, 5, 15, 0.15), 0 4px 4px rgba(0, 5, 15, 0.05);
+    cursor: pointer;
+    display: inline-block;
+    height: 265px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 5;
+    @media (max-width: 1040px) {
+      height: auto;
+      border-radius: 5px;
+      &:before {
+        content: "";
+        display: block;
+        height: 0;
+        width: 0;
+        padding-bottom: 142.85714%;
+      }
+    }
+    .image {
+      height: 100%;
+      left: 0;
+      object-fit: cover;
+      opacity: 1;
+      position: absolute;
+      top: 0;
+      transition: opacity 0.3s ease-in-out;
+      width: 100%;
+    }
+  }
+  .name {
+    color: rgb(139, 160, 178);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    margin-top: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    @media (max-width: 760px) {
+      font-size: 12px;
+      line-height: 17px;
+    }
+  }
+}
+@keyframes card-animation {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+  }
+}

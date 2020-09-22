@@ -1,0 +1,22 @@
+@import "~@material/icon-button/dist/mdc.icon-button.min.css";
+@import "~@material/top-app-bar/dist/mdc.top-app-bar.min.css";
+#header {
+  top: 0;
+  background: #152232;
+  z-index: 9;
+  .mdc-top-app-bar__row {
+    height: 56px;
+  }
+  .mdc-top-app-bar__title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .mdc-top-app-bar__action-item {
+    height: 36px;
+    width: 36px;
+    padding: 6px;
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+}
