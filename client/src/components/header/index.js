@@ -11,12 +11,6 @@ const Header = () => {
     <header className="mdc-top-app-bar mdc-top-app-bar--fixed" id="header">
       <div className="mdc-top-app-bar__row">
         <section className="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-          {/* <button
-            className="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button"
-            aria-label="Open navigation menu"
-          >
-            menu
-          </button> */}
           <Link to="/" className="mdc-top-app-bar__title">
             Anikod - FREE
           </Link>
@@ -27,21 +21,22 @@ const Header = () => {
         >
           <button
             className="material-icons mdc-top-app-bar__action-item mdc-icon-button"
-            aria-label="Favorite"
+            aria-label="add"
           >
-            favorite
+            border_clear
           </button>
+          <Link
+            to="/"
+            className="material-icons mdc-top-app-bar__action-item mdc-icon-button"
+            aria-label="add"
+          >
+            add
+          </Link>
           <button
             className="material-icons mdc-top-app-bar__action-item mdc-icon-button"
-            aria-label="Search"
+            aria-label="add"
           >
-            search
-          </button>
-          <button
-            className="material-icons mdc-top-app-bar__action-item mdc-icon-button"
-            aria-label="Options"
-          >
-            history
+            border_clear
           </button>
         </section>
       </div>

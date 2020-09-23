@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import Image from "./image";
 const Item = (item) => {
   return (
-    <div className="media-card" key={item.id}>
-      <Link className="cover" to={`/titles/${item.title_id}`}>
+    <div className="media-card">
+      <Link className="cover" to={`/titles/${item.titles[0].id}`}>
         <Image
-          src={`https://api.anikodcdn.net/${item.franchise.titles[0].images.poster.md}`}
-          alt={item.franchise.name}
+          src={`https://api.anikodcdn.net/${item.titles[0].images.poster.md}`}
+          alt={item.name}
         />
       </Link>
-      <Link to={`/titles/${item.title_id}`} className="name">
-        {item.franchise.name}
+      <Link to={`/titles/${item.titles[0].id}`} className="name">
+        {item.name}
       </Link>
     </div>
   );

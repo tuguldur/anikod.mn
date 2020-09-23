@@ -9,7 +9,7 @@ const Container = (props) => {
       </div>
       <div className="anime-result">
         {items.map((item) => (
-          <Item {...item} key={item.id} />
+          <Item {...item.franchise} key={item.id} />
         ))}
       </div>
     </div>

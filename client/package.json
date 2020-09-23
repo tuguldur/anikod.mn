@@ -7,11 +7,13 @@
     "@material/theme": "^7.0.0",
     "@material/top-app-bar": "^7.0.0",
     "axios": "^0.20.0",
+    "lodash.debounce": "^4.0.8",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "use-lodash-debounce": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
