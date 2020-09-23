@@ -19,4 +19,10 @@
       margin-right: 8px;
     }
   }
+  .mdc-top-app-bar__title {
+    color: white;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

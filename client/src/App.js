@@ -8,7 +8,7 @@ import {
 // components
 import { Header } from "./components";
 // pages
-import { Home } from "./pages";
+import { Home, Titles } from "./pages";
 const App = () => {
   return (
     <div className="app">
@@ -16,6 +16,7 @@ const App = () => {
         <Header />
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/titles/:id" exact component={Titles} />
           <Redirect to="/" />
         </Switch>
       </Router>

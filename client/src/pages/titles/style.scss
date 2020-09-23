@@ -1,0 +1,13 @@
+.titles {
+  height: auto !important;
+  .header-wrap {
+    position: relative;
+    .banner {
+      background-position: 50% 35%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 400px;
+      margin-top: -58px;
+    }
+  }
+}

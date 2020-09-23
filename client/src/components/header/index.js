@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { MDCTopAppBar } from "@material/top-app-bar";
+import { Link } from "react-router-dom";
 import "./style.scss";
 const Header = () => {
   useEffect(() => {
@@ -16,7 +17,9 @@ const Header = () => {
           >
             menu
           </button> */}
-          <span className="mdc-top-app-bar__title">Anikod - FREE</span>
+          <Link to="/" className="mdc-top-app-bar__title">
+            Anikod - FREE
+          </Link>
         </section>
         <section
           className="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
