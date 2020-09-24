@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.scss";
+import { NavLink } from "react-router-dom";
 const Titles = (props) => {
   const { id } = props.match.params;
   const [title, setTitle] = useState(null);
   const [franchise, setFranchise] = useState(null);
   const [anilist, setAnilist] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [episodes, setEpisodes] = useState(null);
   useEffect(() => {
+    // get title detail
     axios.get("https://api.anikodcdn.net/api/titles/" + id).then((response) => {
+      // get franchises
       axios
         .get(
           "https://api.anikodcdn.net/api/franchises/" +
@@ -15,6 +20,7 @@ const Titles = (props) => {
         )
         .then((franchies) => setFranchise(franchies.data));
       setTitle(response.data);
+      // anilist data (cover,details)
       axios
         .post("https://graphql.anilist.co", {
           query: `
@@ -61,9 +67,17 @@ const Titles = (props) => {
         })
         .then((data) => setAnilist(data.data.data.Media));
     });
+    // episodes
+    axios
+      .get(`https://api.anikodcdn.net/api/titles/${id}/episodes`)
+      .then((episode) => setEpisodes(episode.data));
   }, [id]);
+  console.log(episodes);
   return (
     <div className="titles">
+      {open ? (
+        <div className="dropdown-trigger" onClick={() => setOpen(false)} />
+      ) : null}
       {title && anilist && franchise ? (
         <>
           <div className="header-wrap">
@@ -86,7 +100,33 @@ const Titles = (props) => {
                   </div>
                 </div>
                 <div className="content">
-                  <h1>{title.name_rom}</h1>
+                  <div className="pr">
+                    <h1
+                      onClick={() => {
+                        if (franchise.titles.length > 1) {
+                          setOpen(true);
+                        }
+                      }}
+                    >
+                      {title.name_rom}
+                      {franchise.titles.length > 1 ? (
+                        <div className="title-dropdown">
+                          <i className="material-icons">keyboard_arrow_down</i>
+                        </div>
+                      ) : null}
+                    </h1>
+                    {franchise.titles.length > 1 && open ? (
+                      <div className="dropdown" onClick={() => setOpen(false)}>
+                        {franchise.titles.map((label) => (
+                          <div className="option" key={label.id}>
+                            <NavLink to={"/titles/" + label.id}>
+                              {label.label}
+                            </NavLink>
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
                   <p className="description">{title.plot}</p>
                 </div>
               </div>
@@ -107,7 +147,9 @@ const Titles = (props) => {
                   </div>
                   <div className="data-set">
                     <div className="type">Нийт анги</div>
-                    <div className="value">{title.total_ep}</div>
+                    <div className="value">
+                      {title.total_ep}/{episodes.length}
+                    </div>
                   </div>
                   <div className="data-set">
                     <div className="type">Төлөв</div>
@@ -149,7 +191,22 @@ const Titles = (props) => {
                   <h2>Description</h2>
                   <p className="description content-wrap">{title.plot}</p>
                 </div>
-                <div className="watch"></div>
+                <div className="watch">
+                  <h2>Episodes</h2>
+                  <div className="grid-wrap">
+                    {episodes.map((episode) => (
+                      <div className="episode-card" key={episode.id}>
+                        <div
+                          className="cover"
+                          style={{
+                            backgroundImage: `url('https://api.anikodcdn.net/${episode.images.thumbnail.sm}')`,
+                          }}
+                        />
+                        <div className="number">{episode.number}-р анги</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

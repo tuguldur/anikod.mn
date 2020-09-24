@@ -51,88 +51,90 @@ const Browse = () => {
     setFilter({ ...filter, [type]: { name, value } });
   };
   return (
-    <div className="container browse">
-      {dropdown.genre || dropdown.sort ? (
-        <div
-          className="dropdown-trigger"
-          onClick={() => setDropdown({ genre: false, sort: false })}
-        />
-      ) : null}{" "}
-      <div className="filter-wrap">
-        <div className="filter">
-          <div className="name">Төрөл</div>
-          <div className="select-wrap">
-            <div className="select" onClick={() => open("genre")}>
-              <div className="placeholder">{filter.genre.name}</div>
-              <i className="material-icons">expand_more</i>
-            </div>
-          </div>
-          {dropdown.genre ? (
-            <div className="options" onClick={() => close("genre")}>
-              <div className="scroll-wrap">
-                <div className="group-title">Төрөл</div>
-                <div
-                  className="option"
-                  onClick={() => find("Бүгд", "genre", "")}
-                >
-                  <div className="label">
-                    <div className="name">Бүгд</div>
-                  </div>
-                </div>
-                {genres
-                  ? genres.map((genre) => (
-                      <div
-                        className="option"
-                        key={genre.id}
-                        onClick={() => find(genre.name, "genre", genre.id)}
-                      >
-                        <div className="label">
-                          <div className="name">{genre.name}</div>
-                        </div>
-                      </div>
-                    ))
-                  : null}
+    <div className="flex">
+      <div className="container browse">
+        {dropdown.genre || dropdown.sort ? (
+          <div
+            className="dropdown-trigger"
+            onClick={() => setDropdown({ genre: false, sort: false })}
+          />
+        ) : null}
+        <div className="filter-wrap">
+          <div className="filter">
+            <div className="name">Төрөл</div>
+            <div className="select-wrap">
+              <div className="select" onClick={() => open("genre")}>
+                <div className="placeholder">{filter.genre.name}</div>
+                <i className="material-icons">expand_more</i>
               </div>
             </div>
-          ) : null}
-        </div>
-        <div className="filter">
-          <div className="name">Эрэмбэ</div>
-          <div className="select-wrap ">
-            <div className="select" onClick={() => open("sort")}>
-              <div className="placeholder">{filter.sort.name}</div>
-              <i className="material-icons">expand_more</i>
-            </div>
-          </div>
-          {dropdown.sort ? (
-            <div className="options" onClick={() => close("sort")}>
-              <div className="scroll-wrap">
-                <div className="group-title">Эрэмбэ</div>
-                {sorts.map((sort, index) => (
+            {dropdown.genre ? (
+              <div className="options" onClick={() => close("genre")}>
+                <div className="scroll-wrap">
+                  <div className="group-title">Төрөл</div>
                   <div
                     className="option"
-                    key={index}
-                    onClick={() => find(sort.name, "sort", sort.value)}
+                    onClick={() => find("Бүгд", "genre", "")}
                   >
                     <div className="label">
-                      <div className="name">{sort.name}</div>
+                      <div className="name">Бүгд</div>
                     </div>
                   </div>
-                ))}
+                  {genres
+                    ? genres.map((genre) => (
+                        <div
+                          className="option"
+                          key={genre.id}
+                          onClick={() => find(genre.name, "genre", genre.id)}
+                        >
+                          <div className="label">
+                            <div className="name">{genre.name}</div>
+                          </div>
+                        </div>
+                      ))
+                    : null}
+                </div>
+              </div>
+            ) : null}
+          </div>
+          <div className="filter">
+            <div className="name">Эрэмбэ</div>
+            <div className="select-wrap">
+              <div className="select" onClick={() => open("sort")}>
+                <div className="placeholder">{filter.sort.name}</div>
+                <i className="material-icons">expand_more</i>
               </div>
             </div>
-          ) : null}
+            {dropdown.sort ? (
+              <div className="options" onClick={() => close("sort")}>
+                <div className="scroll-wrap">
+                  <div className="group-title">Эрэмбэ</div>
+                  {sorts.map((sort, index) => (
+                    <div
+                      className="option"
+                      key={index}
+                      onClick={() => find(sort.name, "sort", sort.value)}
+                    >
+                      <div className="label">
+                        <div className="name">{sort.name}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
         </div>
+        {state ? (
+          <div className="anime-result">
+            {state.map((item) => {
+              return <Item {...item} key={item.id} />;
+            })}
+          </div>
+        ) : (
+          <div className="text-center">*:･ﾟ✧(ꈍᴗꈍ)✧･ﾟ:*</div>
+        )}
       </div>
-      {state ? (
-        <div className="anime-result">
-          {state.map((item) => {
-            return <Item {...item} key={item.id} />;
-          })}
-        </div>
-      ) : (
-        <div className="text-center">*:･ﾟ✧(ꈍᴗꈍ)✧･ﾟ:*</div>
-      )}
     </div>
   );
 };

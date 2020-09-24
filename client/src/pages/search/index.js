@@ -25,57 +25,59 @@ const Search = () => {
     }
   }, [name]);
   return (
-    <div className="container" style={{ paddingTop: "25px" }}>
-      <div className="search">
-        <div className="search-label">Search</div>
-        <div className="search-wrap">
-          <i className="material-icons">search</i>
-          <input
-            type="search"
-            autoComplete="off"
-            className="search-input"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            autoFocus={true}
-          />
-          {value ? (
-            <i
-              className="material-icons"
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                setValue("");
-                setFranchise(null);
-              }}
-            >
-              cancel
-            </i>
-          ) : null}
+    <div className="flex">
+      <div className="container" style={{ paddingTop: "25px" }}>
+        <div className="search">
+          <div className="search-label">Search</div>
+          <div className="search-wrap">
+            <i className="material-icons">search</i>
+            <input
+              type="search"
+              autoComplete="off"
+              className="search-input"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              autoFocus={true}
+            />
+            {value ? (
+              <i
+                className="material-icons"
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setValue("");
+                  setFranchise(null);
+                }}
+              >
+                cancel
+              </i>
+            ) : null}
+          </div>
         </div>
-      </div>
-      {franchise ? (
-        franchise.length ? (
-          <div className="anime-result">
-            {franchise.map((item) => {
-              return <Item {...item} key={item.id} />;
-            })}
-          </div>
+        {franchise ? (
+          franchise.length ? (
+            <div className="anime-result">
+              {franchise.map((item) => {
+                return <Item {...item} key={item.id} />;
+              })}
+            </div>
+          ) : (
+            <div className="not-found">
+              <h5>No Results</h5>
+              <p
+                className="search-cancel"
+                onClick={() => {
+                  setValue("");
+                  setFranchise(null);
+                }}
+              >
+                Cancel
+              </p>
+            </div>
+          )
         ) : (
-          <div className="not-found">
-            <h5>No Results</h5>
-            <p
-              className="search-cancel"
-              onClick={() => {
-                setValue("");
-                setFranchise(null);
-              }}
-            >
-              Cancel
-            </p>
-          </div>
-        )
-      ) : (
-        <></>
-      )}
+          <></>
+        )}
+      </div>
     </div>
   );
 };

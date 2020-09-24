@@ -58,6 +58,32 @@
           grid-template-rows: -webkit-min-content -webkit-min-content auto;
           grid-template-rows: min-content min-content auto;
           padding-top: 25px;
+          .dropdown {
+            background: rgb(58, 72, 95);
+            border-radius: 6px;
+            box-shadow: 0 14px 30px rgba(0, 5, 15, 0.15),
+              0 4px 4px rgba(0, 5, 15, 0.05);
+            cursor: auto;
+            top: 25px;
+            padding: 9px 18px;
+            position: absolute;
+            width: 175px;
+            z-index: 50;
+            .option {
+              padding: 9px 0;
+              a {
+                text-decoration: none;
+                color: white;
+                font-size: 16px;
+                font-weight: 600;
+                transition: color 0.2s ease;
+                &:hover,
+                &.active {
+                  color: rgb(61, 180, 242);
+                }
+              }
+            }
+          }
           h1 {
             color: rgb(159, 173, 189);
             margin: 0;
@@ -65,6 +91,11 @@
             font-size: 19px;
             font-weight: 400;
             font-family: "Roboto";
+            display: flex;
+            cursor: pointer;
+            &:hover {
+              color: white;
+            }
             @media (max-width: 760px) {
               font-size: 18px;
               font-weight: 500;
@@ -170,10 +201,55 @@
         }
       }
       .watch {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(auto-fill, 100px);
+        h2 {
+          margin-top: 0;
+          margin-bottom: 10px;
+          font-size: 14px;
+          font-weight: 500;
+          color: #9fadbd;
+        }
+        .grid-wrap {
+          .episode-card {
+            background: rgb(21, 31, 48);
+            border-radius: 3px;
+            height: 120px;
+            overflow: hidden;
+            position: relative;
+            .cover {
+              background-position: 50% 35%;
+              background-repeat: no-repeat;
+              background-size: cover;
+              height: 120px;
+            }
+            .number {
+              position: absolute;
+              bottom: 10px;
+              left: 10px;
+              padding: 3px 6px;
+              background: #000;
+              border-radius: 4px;
+              color: #fcfcfc;
+              font-size: 0.7rem;
+              z-index: 2;
+            }
+            @media (max-width: 760px) {
+              height: 80px;
+              .cover {
+                height: 80px;
+              }
+            }
+          }
+          display: grid;
+          grid-column-gap: 30px;
+          grid-row-gap: 15px;
+          grid-template-columns: repeat(4, 1fr);
+          @media (max-width: 1540px) {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          @media (max-width: 1040px) {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
       }
     }
   }
