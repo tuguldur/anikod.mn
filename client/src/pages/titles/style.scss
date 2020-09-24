@@ -233,6 +233,21 @@
               font-size: 0.7rem;
               z-index: 2;
             }
+            .download {
+              position: absolute;
+              bottom: 4px;
+              right: 6px;
+              padding: 6px;
+              background: rgba(0, 0, 0, 0.3);
+              border-radius: 50%;
+              z-index: 2;
+              height: 20px;
+              width: 20px;
+              i.material-icons {
+                font-size: 20px;
+                color: #fcfcfc;
+              }
+            }
             @media (max-width: 760px) {
               height: 80px;
               .cover {

@@ -9,6 +9,24 @@ const Titles = (props) => {
   const [anilist, setAnilist] = useState(null);
   const [open, setOpen] = useState(false);
   const [episodes, setEpisodes] = useState(null);
+  const download = (episode_id) => {
+    // const downloadable = await axios.get(
+    //   `https://api.anikodcdn.net/api/episodes/${episode_id}`
+    // );
+    return (
+      <a
+        // href={`https://anikodcdn.net/stream?id=${downloadable.data.vods[0].id}&amp;dl=1`}
+        // download
+        href="/"
+        onClick={(e) => {
+          e.preventDefault();
+          alert("downloading episode id " + episode_id);
+        }}
+      >
+        <i className="material-icons">get_app</i>
+      </a>
+    );
+  };
   useEffect(() => {
     // get title detail
     axios.get("https://api.anikodcdn.net/api/titles/" + id).then((response) => {
@@ -19,6 +37,7 @@ const Titles = (props) => {
             response.data.franchise_id
         )
         .then((franchies) => setFranchise(franchies.data));
+      document.title = response.data.name_rom;
       setTitle(response.data);
       // anilist data (cover,details)
       axios
@@ -71,8 +90,10 @@ const Titles = (props) => {
     axios
       .get(`https://api.anikodcdn.net/api/titles/${id}/episodes`)
       .then((episode) => setEpisodes(episode.data));
+    return () => {
+      document.title = "ANIKOD - PRO";
+    };
   }, [id]);
-  console.log(episodes);
   return (
     <div className="titles">
       {open ? (
@@ -203,6 +224,7 @@ const Titles = (props) => {
                           }}
                         />
                         <div className="number">{episode.number}-р анги</div>
+                        <div className="download">{download(episode.id)}</div>
                       </div>
                     ))}
                   </div>
