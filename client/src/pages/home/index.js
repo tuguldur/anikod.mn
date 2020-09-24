@@ -77,7 +77,18 @@ const Home = () => {
               })}
             </div>
           ) : (
-            <div className="not-fount">Not Fount UwU</div>
+            <div className="not-found">
+              <h5>No Results</h5>
+              <p
+                className="search-cancel"
+                onClick={() => {
+                  setValue("");
+                  setFranchise(null);
+                }}
+              >
+                Cancel
+              </p>
+            </div>
           )
         ) : (
           <></>

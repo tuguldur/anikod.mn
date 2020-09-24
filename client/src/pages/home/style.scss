@@ -40,6 +40,7 @@
       font-weight: 600;
     }
     .search-input {
+      font-size: 16px;
       background: none;
       border: none;
       color: rgb(139, 160, 178);
@@ -174,5 +175,23 @@
   }
   100% {
     transform: none;
+  }
+}
+.not-found {
+  text-align: center;
+  h5 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: rgb(159, 173, 189);
+  }
+  .search-cancel {
+    font-size: 16px;
+    color: rgb(157, 177, 199);
+    font-weight: 600;
+    cursor: pointer;
+    &:hover {
+      color: white;
+    }
   }
 }

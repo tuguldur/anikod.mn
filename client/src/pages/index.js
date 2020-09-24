@@ -1,3 +1,5 @@
 import Home from "./home";
 import Titles from "./titles";
-export { Home, Titles };
+import Search from "./search";
+import Browse from "./browse";
+export { Home, Titles, Search, Browse };

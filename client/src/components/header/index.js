@@ -19,25 +19,22 @@ const Header = () => {
           className="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
           role="toolbar"
         >
-          <button
-            className="material-icons mdc-top-app-bar__action-item mdc-icon-button"
-            aria-label="add"
-          >
-            border_clear
-          </button>
-          <Link
-            to="/"
-            className="material-icons mdc-top-app-bar__action-item mdc-icon-button"
-            aria-label="add"
-          >
-            add
-          </Link>
-          <button
-            className="material-icons mdc-top-app-bar__action-item mdc-icon-button"
-            aria-label="add"
-          >
-            border_clear
-          </button>
+          <div className="nav-container">
+            <Link
+              to="/browse"
+              className="material-icons mdc-top-app-bar__action-item mdc-icon-button"
+              aria-label="Үзвэр"
+            >
+              apps
+            </Link>
+            <Link
+              to="/search"
+              className="material-icons mdc-top-app-bar__action-item mdc-icon-button"
+              aria-label="Search"
+            >
+              search
+            </Link>
+          </div>
         </section>
       </div>
     </header>
