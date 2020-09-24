@@ -12,7 +12,7 @@ const Header = () => {
       <div className="mdc-top-app-bar__row">
         <section className="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
           <Link to="/" className="mdc-top-app-bar__title">
-            Anikod - FREE
+            Anikod - PRO
           </Link>
         </section>
         <section
