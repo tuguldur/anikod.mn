@@ -177,7 +177,6 @@
       }
     }
     .overview {
-      overflow: hidden;
       height: auto;
       .description-wrap {
         display: none;
@@ -241,6 +240,10 @@
                 min-width: 128px;
                 z-index: 5;
                 cursor: default;
+                .loading {
+                  padding: 0 12px;
+                  color: white;
+                }
               }
               .mdc-list-item {
                 margin: 4px 0;

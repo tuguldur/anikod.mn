@@ -253,7 +253,7 @@ const Titles = (props) => {
                                         key={index}
                                         download
                                       >
-                                        Download {link.resolution}px
+                                        Download {link.resolution}p
                                       </a>
                                     ) : null
                                   )
