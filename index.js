@@ -1,6 +1,9 @@
 const express = require("express");
+const ssl = require("heroku-ssl-redirect");
 const app = express();
 const path = require("path");
+// enable ssl redirect
+app.use(ssl());
 
 app.use(express.static(path.join(__dirname, "/client/build")));
 app.use(express.json());

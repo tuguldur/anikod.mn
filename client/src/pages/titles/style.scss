@@ -214,7 +214,6 @@
             background: rgb(21, 31, 48);
             border-radius: 3px;
             height: 120px;
-            overflow: hidden;
             position: relative;
             .cover {
               background-position: 50% 35%;
@@ -235,17 +234,33 @@
             }
             .download {
               position: absolute;
-              bottom: 4px;
+              bottom: 6px;
               right: 6px;
-              padding: 6px;
-              background: rgba(0, 0, 0, 0.3);
-              border-radius: 50%;
-              z-index: 2;
-              height: 20px;
-              width: 20px;
-              i.material-icons {
+              .mdc-menu-surface {
+                background: #2d2e31;
+                min-width: 128px;
+                z-index: 5;
+                cursor: default;
+              }
+              .mdc-list-item {
+                margin: 4px 0;
+                height: 24px;
+                color: white;
+                width: 128px;
+                &:active,
+                &:focus,
+                &:hover {
+                  background: hsla(0, 0%, 100%, 0.08);
+                }
+              }
+              .download-dropdown {
+                height: 36px;
+                width: 36px;
                 font-size: 20px;
-                color: #fcfcfc;
+                padding: 6px;
+                &::before {
+                  opacity: 0.04;
+                }
               }
             }
             @media (max-width: 760px) {

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { MDCMenuSurface } from "@material/menu-surface";
+import { MDCRipple } from "@material/ripple";
 import axios from "axios";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
@@ -9,24 +11,7 @@ const Titles = (props) => {
   const [anilist, setAnilist] = useState(null);
   const [open, setOpen] = useState(false);
   const [episodes, setEpisodes] = useState(null);
-  const download = (episode_id) => {
-    // const downloadable = await axios.get(
-    //   `https://api.anikodcdn.net/api/episodes/${episode_id}`
-    // );
-    return (
-      <a
-        // href={`https://anikodcdn.net/stream?id=${downloadable.data.vods[0].id}&amp;dl=1`}
-        // download
-        href="/"
-        onClick={(e) => {
-          e.preventDefault();
-          alert("downloading episode id " + episode_id);
-        }}
-      >
-        <i className="material-icons">get_app</i>
-      </a>
-    );
-  };
+  const [downloads, setDownloads] = useState(null);
   useEffect(() => {
     // get title detail
     axios.get("https://api.anikodcdn.net/api/titles/" + id).then((response) => {
@@ -94,6 +79,23 @@ const Titles = (props) => {
       document.title = "ANIKOD - PRO";
     };
   }, [id]);
+  useEffect(() => {
+    // download dropdown
+    const menuEls = Array.from(document.querySelectorAll(".mdc-menu-surface"));
+    menuEls.forEach((menuEl) => {
+      const menu = new MDCMenuSurface(menuEl);
+      const dropdownToggle = menuEl.parentElement.querySelector(
+        ".download-dropdown"
+      );
+      dropdownToggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        menu.open();
+      });
+      // dropdown ripple
+      const icons = document.querySelectorAll(".mdc-icon-button");
+      icons.forEach((icon) => (new MDCRipple(icon).unbounded = true));
+    });
+  });
   return (
     <div className="titles">
       {open ? (
@@ -224,7 +226,44 @@ const Titles = (props) => {
                           }}
                         />
                         <div className="number">{episode.number}-р анги</div>
-                        <div className="download">{download(episode.id)}</div>
+                        <div className="download">
+                          <div className="mdc-menu-surface--anchor">
+                            <button
+                              className="download-dropdown material-icons mdc-icon-button"
+                              onClick={() => {
+                                setDownloads(null);
+                                axios
+                                  .get(
+                                    "https://api.anikodcdn.net/api/episodes/" +
+                                      episode.id
+                                  )
+                                  .then((data) => setDownloads(data.data.vods));
+                              }}
+                            >
+                              get_app
+                            </button>
+                            <div className="mdc-menu-surface">
+                              <div className="mdc-list">
+                                {downloads ? (
+                                  downloads.map((link, index) =>
+                                    link ? (
+                                      <a
+                                        href={`https://anikodcdn.net/stream?id=${link.id}&amp;dl=1`}
+                                        className="mdc-list-item"
+                                        key={index}
+                                        download
+                                      >
+                                        Download {link.resolution}px
+                                      </a>
+                                    ) : null
+                                  )
+                                ) : (
+                                  <div className="loading">Loading</div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     ))}
                   </div>

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material/icon-button": "^7.0.0",
+    "@material/menu": "^7.0.0",
     "@material/theme": "^7.0.0",
     "@material/top-app-bar": "^7.0.0",
     "axios": "^0.20.0",
