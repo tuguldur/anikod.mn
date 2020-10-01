@@ -1,10 +1,15 @@
 const express = require("express");
-const ssl = require("heroku-ssl-redirect");
 const app = express();
 const path = require("path");
 // enable ssl redirect
-app.use(ssl());
-
+app.get("*", function (req, res, next) {
+  if (
+    req.headers["x-forwarded-proto"] != "https" &&
+    process.env.NODE_ENV === "production"
+  )
+    res.redirect("https://" + req.hostname + req.url);
+  else next(); /* Continue to other routes if we're not redirecting */
+});
 app.use(express.static(path.join(__dirname, "/client/build")));
 app.use(express.json());
 app.use("/api", require("./src/routes"));

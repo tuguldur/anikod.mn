@@ -248,7 +248,7 @@ const Titles = (props) => {
                                   downloads.map((link, index) =>
                                     link ? (
                                       <a
-                                        href={`https://anikodcdn.net/stream?id=${link.id}&amp;dl=1`}
+                                        href={`https://anikodcdn.net/stream?id=${link.id}&dl=1`}
                                         className="mdc-list-item"
                                         key={index}
                                         download
