@@ -1,0 +1,75 @@
+#stream {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  .modal {
+    max-width: 80vw;
+    max-height: 100vw;
+    cursor: default;
+    @media only screen and (max-width: 599px) {
+      max-width: 100vw;
+    }
+    .modal-header {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 3px;
+        top: 8px;
+        bottom: 8px;
+        background-color: #e50914;
+      }
+      h1 {
+        flex-grow: 1;
+        font-size: 20px;
+        line-height: 34px;
+        padding-left: 1em;
+        margin: 0;
+
+        span {
+          font-weight: 700;
+          display: block;
+          flex-grow: 0;
+        }
+      }
+      .close-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+        .mdc-icon-button {
+          padding: 4px;
+          height: 34px;
+          width: 34px;
+        }
+      }
+      @media only screen and (max-width: 599px) {
+        margin: 0 15px;
+      }
+    }
+    .modal-player-content {
+      .player {
+        width: 90vmin;
+        padding-bottom: 56.3%;
+        margin-top: 10px;
+        max-width: 100%;
+        background-color: #000;
+        position: relative;
+        z-index: 1;
+        @media only screen and (max-width: 599px) {
+          width: 100vmin;
+        }
+      }
+    }
+  }
+}

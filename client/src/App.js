@@ -8,7 +8,7 @@ import {
 // components
 import { Header } from "./components";
 // pages
-import { Home, Titles, Search, Browse } from "./pages";
+import { Home, Titles, Search, Browse, Stream } from "./pages";
 const App = () => {
   return (
     <div className="app">
@@ -17,6 +17,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/titles/:id" exact component={Titles} />
+          <Route path="/stream/:id" exact component={Stream} />
           <Route path="/search" exact component={Search} />
           <Route path="/browse" exact component={Browse} />
           <Redirect to="/" />

@@ -1,0 +1,103 @@
+.episode-card {
+  background: rgb(21, 31, 48);
+  border-radius: 3px;
+  height: 120px;
+  position: relative;
+  .cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    background: rgba(57, 58, 79, 0);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    z-index: 1;
+  }
+  .cover-button {
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  &:hover {
+    .cover-overlay {
+      background: rgba(57, 58, 79, 0.4);
+    }
+    .cover-button {
+      color: #f53b57;
+      opacity: 1;
+      font-size: 32px;
+    }
+  }
+  .cover {
+    background-position: 50% 35%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+  }
+  .number {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 3px 6px;
+    background: #000;
+    border-radius: 4px;
+    color: #fcfcfc;
+    font-size: 0.7rem;
+    z-index: 2;
+  }
+  .download {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    z-index: 3;
+    .mdc-list {
+      padding: 0;
+    }
+    .mdc-menu-surface {
+      background: #2d2e31;
+      min-width: 128px;
+      z-index: 5;
+      cursor: default;
+      .loading {
+        padding: 0 12px;
+        color: white;
+      }
+    }
+    .mdc-list-item {
+      height: 32px;
+      color: white;
+      width: 128px;
+      .mdc-list-item__ripple {
+        &::before,
+        &::after {
+          background-color: #fff;
+        }
+      }
+    }
+    .download-dropdown {
+      height: 36px;
+      width: 36px;
+      font-size: 20px;
+      padding: 6px;
+      &::before {
+        opacity: 0.04;
+      }
+    }
+  }
+  @media (max-width: 760px) {
+    height: 80px;
+    .cover {
+      height: 80px;
+    }
+  }
+}
