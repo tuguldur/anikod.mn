@@ -11,6 +11,12 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.85);
+  .mdc-icon-button {
+    &::before,
+    &::after {
+      background: #fff;
+    }
+  }
   .modal {
     max-width: 80vw;
     max-height: 100vw;
@@ -37,7 +43,6 @@
         line-height: 34px;
         padding-left: 1em;
         margin: 0;
-
         span {
           font-weight: 700;
           display: block;
@@ -48,27 +53,13 @@
         display: flex;
         flex-direction: column-reverse;
         .mdc-icon-button {
-          padding: 4px;
+          padding: 5px;
           height: 34px;
           width: 34px;
         }
       }
       @media only screen and (max-width: 599px) {
         margin: 0 15px;
-      }
-    }
-    .modal-player-content {
-      .player {
-        width: 90vmin;
-        padding-bottom: 56.3%;
-        margin-top: 10px;
-        max-width: 100%;
-        background-color: #000;
-        position: relative;
-        z-index: 1;
-        @media only screen and (max-width: 599px) {
-          width: 100vmin;
-        }
       }
     }
   }

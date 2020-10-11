@@ -58,11 +58,9 @@ const Stream = (props) => {
               </div>
             </div>
             <div className="modal-player-content">
-              <div className="player">
-                <Player
-                  src={`https://anikodcdn.net/static/media/mp4/${episode.title_id}/${episode.number}_480.mp4`}
-                />
-              </div>
+              <Player
+                src={`https://anikodcdn.net/static/media/mp4/${episode.title_id}/${episode.number}_${episode.vods[0].resolution}.mp4`}
+              />
             </div>
           </>
         ) : null}

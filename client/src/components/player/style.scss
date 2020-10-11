@@ -1,3 +1,16 @@
+.player {
+  width: 90vmin;
+  padding-bottom: 56.3%;
+  margin-top: 10px;
+  max-width: 100%;
+  background-color: #000;
+  position: relative;
+  z-index: 1;
+  @media only screen and (max-width: 599px) {
+    width: 100vmin;
+  }
+}
+
 #player {
   position: absolute;
   top: 0px;
