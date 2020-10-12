@@ -17,6 +17,7 @@ const Browse = () => {
     { name: "Хуучин", value: "id_asc" },
   ];
   useEffect(() => {
+    document.title  ='Бүх гаргалтууд | ANIKOD - PRO';
     axios
       .get("https://api.anikodcdn.net/api/genres")
       .then((genre) => setGenres(genre.data));
@@ -40,6 +41,9 @@ const Browse = () => {
         },
       })
       .then((anime) => setState(anime.data));
+      return ()=>{
+        document.title  = 'ANIKOD - PRO';
+      }
   }, [filter]);
   const open = (type) => {
     setDropdown({ [type]: true });

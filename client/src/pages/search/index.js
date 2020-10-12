@@ -8,6 +8,7 @@ const Search = () => {
   const [franchise, setFranchise] = useState(null);
   const name = useDebounce(value, 600);
   useEffect(() => {
+    document.title = 'Хайх | ANIKOD - PRO';
     if (name) {
       setFranchise(null);
       axios
@@ -22,6 +23,9 @@ const Search = () => {
             setFranchise(response.data);
           } else setFranchise(null);
         });
+    }
+    return ()=>{
+      document.title = 'ANIKOD - PRO';
     }
   }, [name]);
   return (

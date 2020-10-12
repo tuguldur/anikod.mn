@@ -49,9 +49,34 @@
           flex-grow: 0;
         }
       }
-      .close-wrapper {
+      .action-wrapper {
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: row;
+        .mdc-list {
+          padding: 0;
+        }
+        .mdc-menu-surface {
+          background: #2d2e31;
+          min-width: 128px;
+          z-index: 5;
+          cursor: default;
+        }
+        .mdc-list-item {
+          height: 32px;
+          color: white;
+          width: 128px;
+          &.active {
+            .mdc-list-item__ripple::before {
+              opacity: 0.04;
+            }
+          }
+          .mdc-list-item__ripple {
+            &::before,
+            &::after {
+              background-color: #fff;
+            }
+          }
+        }
         .mdc-icon-button {
           padding: 5px;
           height: 34px;
@@ -62,5 +87,13 @@
         margin: 0 15px;
       }
     }
+  }
+}
+#player-settings {
+  .menu-title {
+    color: white;
+    padding: 5px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 }
