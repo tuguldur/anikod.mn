@@ -170,7 +170,7 @@ const Titles = (props) => {
                     </div>
                   </div>
                   <div className="data-set">
-                    <div className="type">Студи</div>
+                    <div className="type">Төрөл</div>
                     <div className="value">
                       {franchise.genres.map((genre, index) => {
                         var genlen = franchise.genres.length;
