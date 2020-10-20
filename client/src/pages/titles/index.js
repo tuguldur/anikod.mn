@@ -23,9 +23,10 @@ const Titles = (props) => {
       document.title = response.data.name_rom;
       setTitle(response.data);
       // anilist data (cover,details)
-      axios
-        .post("https://graphql.anilist.co", {
-          query: `
+      if (response.data.anilist_id) {
+        axios
+          .post("https://graphql.anilist.co", {
+            query: `
         query ($id: Int) {
           Media (id: $id, type: ANIME) {
             title {
@@ -65,9 +66,10 @@ const Titles = (props) => {
           }
         }
       `,
-          variables: { id: response.data.anilist_id },
-        })
-        .then((data) => setAnilist(data.data.data.Media));
+            variables: { id: response.data.anilist_id },
+          })
+          .then((data) => setAnilist(data.data.data.Media));
+      }
     });
     // episodes
     axios
@@ -82,12 +84,18 @@ const Titles = (props) => {
       {open ? (
         <div className="dropdown-trigger" onClick={() => setOpen(false)} />
       ) : null}
-      {title && anilist && franchise ? (
+      {title && franchise ? (
         <>
           <div className="header-wrap">
             <div
               className="banner"
-              style={{ backgroundImage: `url(${anilist.bannerImage})` }}
+              style={{
+                backgroundImage: `url(${
+                  anilist
+                    ? anilist.bannerImage
+                    : `https://api.anikodcdn.net/${title.images.banner.original}`
+                })`,
+              }}
             >
               <div className="shadow" />
             </div>
@@ -162,32 +170,48 @@ const Titles = (props) => {
                     </div>
                   </div>
                   <div className="data-set">
-                    <div className="type">Ангийн урт</div>
-                    <div className="value">{anilist.duration} минут</div>
-                  </div>
-                  <div className="data-set">
-                    <div className="type">Гарч эхэлсэн</div>
-                    <div className="value">{`${anilist.startDate.year}-${anilist.startDate.month}-${anilist.startDate.day}`}</div>
-                  </div>
-                  <div className="data-set">
-                    <div className="type">Үнэлгээ</div>
-                    <div className="value">{anilist.averageScore}%</div>
-                  </div>
-                  <div className="data-set">
-                    <div className="type">Нас</div>
-                    <div className="value">+{franchise.age_rating}</div>
-                  </div>
-                  <div className="data-set">
                     <div className="type">Студи</div>
                     <div className="value">
-                      {anilist.studios.nodes.map((node, index) => (
-                        <div key={index}>
-                          {node.name}
-                          <br />
-                        </div>
-                      ))}
+                      {franchise.genres.map((genre, index) => {
+                        var genlen = franchise.genres.length;
+                        if (genlen === index + 1) return genre.name;
+                        else {
+                          return genre.name + ", ";
+                        }
+                      })}
                     </div>
                   </div>
+                  {anilist ? (
+                    <>
+                      <div className="data-set">
+                        <div className="type">Ангийн урт</div>
+                        <div className="value">{anilist.duration} минут</div>
+                      </div>
+                      <div className="data-set">
+                        <div className="type">Гарч эхэлсэн</div>
+                        <div className="value">{`${anilist.startDate.year}-${anilist.startDate.month}-${anilist.startDate.day}`}</div>
+                      </div>
+                      <div className="data-set">
+                        <div className="type">Үнэлгээ</div>
+                        <div className="value">{anilist.averageScore}%</div>
+                      </div>
+                      <div className="data-set">
+                        <div className="type">Нас</div>
+                        <div className="value">+{franchise.age_rating}</div>
+                      </div>
+                      <div className="data-set">
+                        <div className="type">Студи</div>
+                        <div className="value">
+                          {anilist.studios.nodes.map((node, index) => (
+                            <div key={index}>
+                              {node.name}
+                              <br />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  ) : null}
                 </div>
               </div>
               <div className="overview">
