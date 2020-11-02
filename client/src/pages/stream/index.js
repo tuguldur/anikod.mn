@@ -12,8 +12,7 @@ const Stream = (props) => {
   const [title, setTitle] = useState(null);
   const [episodes, setEpisodes] = useState(null);
   const [resolution, setResolution] = useState(null);
-  const [skip, setSkip] = useState(localStorage.getItem("skip"));
-
+  const [skip, setSkip] = useState(Number(localStorage.getItem("skip")));
   useEffect(() => {
     // https://api.anikodcdn.net/api/episodes/:id
     axios
@@ -46,11 +45,7 @@ const Stream = (props) => {
   useEffect(() => {
     if (title && episode && episodes) {
       var switchEl = new MDCSwitch(document.getElementById("switch-ripple"));
-      switchEl.checked = skip
-        ? skip === "true" || skip === true
-          ? true
-          : false
-        : false;
+      switchEl.checked = Number(skip) === 1 ? true : false;
     }
   });
   return (
@@ -103,8 +98,11 @@ const Stream = (props) => {
                             className="mdc-switch__native-control"
                             role="switch"
                             onChange={(e) => {
-                              localStorage.setItem("skip", e.target.checked);
-                              setSkip(e.target.checked);
+                              localStorage.setItem(
+                                "skip",
+                                e.target.checked ? 1 : 0
+                              );
+                              setSkip(e.target.checked ? 1 : 0);
                             }}
                           />
                         </div>

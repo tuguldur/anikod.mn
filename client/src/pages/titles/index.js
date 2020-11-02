@@ -172,13 +172,12 @@ const Titles = (props) => {
                   <div className="data-set">
                     <div className="type">Төрөл</div>
                     <div className="value">
-                      {franchise.genres.map((genre, index) => {
-                        var genlen = franchise.genres.length;
-                        if (genlen === index + 1) return genre.name;
-                        else {
-                          return genre.name + ", ";
-                        }
-                      })}
+                      {franchise.genres.map((genre, index) => (
+                        <div key={index}>
+                          {genre.name}
+                          <br />
+                        </div>
+                      ))}
                     </div>
                   </div>
                   {anilist ? (
