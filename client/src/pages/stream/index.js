@@ -108,6 +108,18 @@ const Stream = (props) => {
                         </div>
                       </div>
                     </div>
+                    <div className="mdc-menu new">
+                      <div className="menu-title">Proxy ашиглахгүй үзэх.</div>
+                      <a
+                        href={`https://anikodcdn.net/static/media/mp4/${episode.title_id}/${episode.number}_${resolution}.mp4`}
+                        target="_blank"
+                        className="mdc-list-item"
+                        rel="noopener noreferrer"
+                      >
+                        Үзэх
+                        <span className="mdc-list-item__ripple"></span>
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <Link
@@ -122,7 +134,7 @@ const Stream = (props) => {
               <Player
                 skip={skip}
                 timestamps={episode.timestamps}
-                src={`https://anikodcdn.net/static/media/mp4/${episode.title_id}/${episode.number}_${resolution}.mp4`}
+                src={`/api/proxy/stream/${episode.title_id}/${episode.number}/${resolution}`}
               />
             </div>
           </>

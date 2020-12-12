@@ -90,6 +90,12 @@
   }
 }
 #player-settings {
+  .mdc-menu.new {
+    margin-bottom: 5px;
+    .menu-title {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+  }
   .menu-title {
     color: white;
     padding: 5px 16px;
